@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layoutPage.html">
+
+
+<style>
+    .news-item {
+        margin-bottom: 20px;
+    }
+</style>
+
+<div layout:fragment="content">
+
+    <script type="text/javascript">
+        loadCourses();
+        function loadCourses(){
+            const httpRequest = new XMLHttpRequest();
+            httpRequest.open("GET", "/exchange-rate", true);
+            httpRequest.onreadystatechange = function (){
+                if(httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200){
+                    let currencyList = JSON.parse(httpRequest.responseText);
+                    let miniTableContent = "" +
+                        "<tr><td>EUR</td><td>"+currencyList.EUR+"</td></tr>" +
+                        "<tr><td>RUB</td><td>"+currencyList.RUB+"</td></tr>" +
+                        "<tr><td>KZT</td><td>"+currencyList.KZT+"</td></tr>";
+
+                    document.getElementById("cardBodyExchange").innerHTML = miniTableContent;
+                }
+            }
+            httpRequest.send();
+        }
+    </script>
+
+
+    <div class="row">
+
+
+            <div class="container-fluid bg-primary text-white py-5">
+                <div class="container">
+                    <h1>Welcome to our sales website!</h1>
+                    <p>We offer a wide range of products for you.</p>
+                    <a th:href="@{'/products'}" class="btn btn-light mr-2">Browse Products</a>
+                    <a href="/templates/contacts.html" class="btn btn-light">Contact Us</a>
+                </div>
+            </div>
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-3 mt-2">
+                        <div class="card bg-light" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Current Exchange Rates</h5>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr class="card-text mb-2">
+                                        <th>Currency</th>
+                                        <th>Rate</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="cardBodyExchange">
+                                    </tbody>
+                                </table>
+                                <p class="card-text text-muted" id="cardText"></p>
+                                <a href="/currency-all" class="btn btn-sm btn-primary">See All</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="container mt-2">
+                        <h2 class="text-primary">Latest News</h2>
+                        <div class="news-item">
+                            <h3 class="text-dark">How to become a partner of the BatAPP?</h3>
+                            <p class="text-muted">5 steps for cooperation</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                        <div class="news-item">
+                            <h3 class="text-dark">How to become a VIP client?</h3>
+                            <p class="text-muted">What is it like to be part of our campaign?</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                        <div class="news-item">
+                            <h3 class="text-dark">How to protect yourself from SCAMMERS?</h3>
+                            <p class="text-muted">Interview with an Internet Security Specialist</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</div>
+
+</html>

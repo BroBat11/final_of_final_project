@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="layoutPage.html">
+<div layout:fragment="content">
+        <div class="row">
+                <div class="col-6 mx-auto">
+                        <h3 class="text-center">WELCOME TO PROFILE,
+                                <span th:text="${#authentication.principal.fullName}"></span>!!!</h3>
+                        <div class="row mt-4">
+                                <div class="col-12">
+                                        <label>FULL NAME:</label>
+                                </div>
+                        </div>
+                        <div class="row mt-2">
+                                <div class="col-12">
+                                        <input class="form-control" type="text" name="user_full_name"
+                                               th:value="${#authentication.principal.fullName}" readonly>
+                                </div>
+                        </div>
+
+                        <div class="row mt-4">
+                                <div class="col-12">
+                                        <label>AGE: </label>
+                                </div>
+                        </div>
+                        <div class="row mt-2">
+                                <div class="col-12">
+                                        <input class="form-control" type="text" name="user_age"
+                                               th:value="${#authentication.principal.age}" readonly>
+                                </div>
+                        </div>
+
+                        <div class="row mt-4">
+                                <div class="col-12">
+                                        <label>EMAIL:</label>
+                                </div>
+                        </div>
+                        <div class="row mt-2">
+                                <div class="col-12">
+                                        <input class="form-control" type="email" name="user_email"
+                                               th:value="${#authentication.principal.email}" readonly>
+                                </div>
+                        </div>
+
+                        <div class="input-group mt-2 w-25" sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                                <div class="input-group-text">
+                                        <input class="form-check-input mt-0" type="radio"
+                                               checked
+                                               aria-label="Radio button for following text input">
+                                </div>
+                                <input type="text" class="form-control"
+                                       th:value="'ADMIN'" readonly
+                                       aria-label="Text input with checkbox">
+                        </div>
+
+                        <div class="input-group mt-2 w-25" sec:authorize="hasAnyRole('ROLE_SELLER')">
+                                <div class="input-group-text">
+                                        <input class="form-check-input mt-0" type="radio"
+                                               checked
+                                               aria-label="Radio button for following text input">
+                                </div>
+                                <input type="text" class="form-control"
+                                       th:value="'SELLER'" readonly
+                                       aria-label="Text input with checkbox">
+                        </div>
+
+                </div>
+        </div>
+</div>
+</html>

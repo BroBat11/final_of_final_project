@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layoutPage.html">
+<div layout:fragment="content">
+        <div class="row">
+                <div class="col-8 mx-auto">
+                        <div class="row mt-4">
+                                <div class="col-12">
+                                        <label>CURRENT MONEY AMOUNT:</label>
+                                </div>
+                        </div>
+                        <div class="row mt-2">
+                                <div class="col-12">
+                                        <input class="form-control" type="text" name="sellerName"
+                                               th:value="${#authentication.principal.money}"
+                                               readonly>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+</html>

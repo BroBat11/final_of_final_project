@@ -1,0 +1,30 @@
+<div class="alert alert-danger alert-dismissible fade show" role="alert"
+     th:if="${param.passwordMismatch!=null}">
+  Password mismatch
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="alert alert-danger alert-dismissible fade show" role="alert"
+     th:if="${param.emailError!=null}">
+  Email is busy
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="alert alert-danger alert-dismissible fade show" role="alert"
+     th:if="${param.userAgeError!=null}">
+  You need to be older than 16 to be at least a USER
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="alert alert-danger alert-dismissible fade show" role="alert"
+     th:if="${param.sellerAgeError!=null}">
+  You need to be older than 21 to be a SELLER
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="alert alert-success alert-dismissible fade show" role="alert"
+     th:if="${param.successSeller!=null}">
+  Signed up as a SELLER successfully!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="alert alert-success alert-dismissible fade show" role="alert"
+     th:if="${param.successUser!=null}">
+  Signed up as a USER successfully!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>

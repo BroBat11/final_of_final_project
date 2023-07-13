@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layoutPage.html">
+
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-6 mx-auto">
+
+            <h2 class="text-center">Settings</h2>
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                 th:if="${param.oldPasswordError!=null}">
+                Incorrect old password
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                 th:if="${param.passwordMismatch!=null}">
+                Password Mismatch!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                 th:if="${param.success!=null}">
+                Password updated successfully!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <form method="post" th:action="@{'/to-update-password'}">
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label>OLD PASSWORD:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input class="form-control" type="password" name="user_old_password"
+                               placeholder="Insert Old Password" required>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label>NEW PASSWORD:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input class="form-control" type="password" name="user_new_password"
+                               placeholder="Insert New Password" required>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label>REPEAT NEW PASSWORD:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input class="form-control" type="password" name="user_repeat_new_password"
+                               placeholder="Repeat Password" required>
+                    </div>
+                </div>
+
+                <button class="btn btn-success mt-2">UPDATE PASSWORD</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>

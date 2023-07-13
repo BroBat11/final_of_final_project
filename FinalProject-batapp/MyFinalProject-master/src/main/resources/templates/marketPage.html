@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layoutPage.html">
+
+<div layout:fragment="content">
+  <div class="row">
+    <div class="col-9
+     mx-auto">
+      <h2 class="text-center">BatMart</h2>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>SELLER</th>
+          <th>NAME</th>
+          <th>PRICE</th>
+          <th>DETAILS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+          <td th:text="${product.id}"></td>
+          <td th:text="${product.sellerName}"></td>
+          <td th:text="${product.name}"></td>
+          <td th:text="${product.price} + '$'"></td>
+          <td>
+            <a th:href="@{'/products/' + ${product.id}}" class="btn btn-sm btn-success">DETAILS</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+</html>

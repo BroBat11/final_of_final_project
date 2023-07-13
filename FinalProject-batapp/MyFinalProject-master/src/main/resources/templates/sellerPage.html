@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layoutPage.html">
+    <div layout:fragment="content">
+        <h3 class="text-center">SELLERS PANEL</h3>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-product-modal">
+            +ADD A PRODUCT
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="add-product-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">ADD NEW PRODUCT</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{'products/add-product'}" method="post">
+                            <input type="hidden" name="sellerName" th:value="${#authentication.principal.fullName}">
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <label>CATEGORY:</label>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <select class="form-select" name="category.id">
+                                        <option th:each="category : ${categories}"
+                                                th:text="${category.name}" th:value="${category.id}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <label>NAME:</label>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <input class="form-control" type="text"
+                                           name="name" placeholder="name of product..."
+                                           required>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <label>DESCRIPTION:</label>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                <textarea class="form-control" name="description"
+                                          placeholder="description..." required></textarea>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <label>PRICE:</label>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <input class="form-control" type="text"
+                                           name="price" placeholder="price..."
+                                           required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary">ADD PRODUCT</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
